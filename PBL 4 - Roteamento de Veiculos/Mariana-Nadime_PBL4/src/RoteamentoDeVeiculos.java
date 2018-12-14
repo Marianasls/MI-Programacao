@@ -12,18 +12,29 @@
  * de avaliação. Alguns trechos do código podem coincidir com de outros
  * colegas pois estes foram discutidos em sessões tutorias.
  ******************************************************************************/
+package controller;
+import java.util.LinkedList;
+import java.util.List;
+import model.Veiculos;
 
 /**
  *
  * @author Mariana Lima
  */
 public class RoteamentoDeVeiculos {
-
+    private final List<Veiculos> veiculos;
+    
+    public RoteamentoDeVeiculos() {
+        veiculos = new LinkedList<>();
+    }
+    
+    public void addVeiculos(Veiculos v) {
+        veiculos.add(v);
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    
 }
