@@ -29,10 +29,10 @@ public class LeituraArquivo {
             String array[] = str.split(";");
             int posXCidadeOrigem = Integer.parseInt(array[3]);
             int posYCidadeOrigem = Integer.parseInt(array[4]);
-            Cidade origem = new Cidade(array[0], posXCidadeOrigem, posYCidadeOrigem);
+            Vertice origem = new Vertice(array[0], posXCidadeOrigem, posYCidadeOrigem);
             int posXCidadeDestino = Integer.parseInt(array[5]);
             int posYCidadeDestino = Integer.parseInt(array[6]);
-            Cidade destino = new Cidade(array[1], posXCidadeDestino, posYCidadeDestino);
+            Vertice destino = new Vertice(array[1], posXCidadeDestino, posYCidadeDestino);
         }
     }
 }
