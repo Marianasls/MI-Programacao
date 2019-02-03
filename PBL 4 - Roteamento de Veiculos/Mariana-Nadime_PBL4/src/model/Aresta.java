@@ -18,6 +18,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.QuadCurve2D;
 import java.awt.geom.Rectangle2D;
+import java.io.Serializable;
 
 
 /*
@@ -25,7 +26,7 @@ import java.awt.geom.Rectangle2D;
  * Controla as informações sobre cada aresta
  * e a desenha na tela.
  */
-public class Aresta implements Comparable<Aresta> {
+public class Aresta implements Comparable<Aresta>, Serializable {
 
     private Vertice _inicio;
     private Vertice _fim;

@@ -18,12 +18,12 @@ package model;
  *
  * @author Mariana Lima
  */
-public class Vehicles {
+public class Veiculos {
     private String nome;
     private String tipoCombustivel;
     private double consumo;
 
-    public Vehicles (String nome, String tipoC, double c){
+    public Veiculos (String nome, String tipoC, double c){
         this.nome = nome;
         this.consumo = c;
         this.tipoCombustivel = tipoC;

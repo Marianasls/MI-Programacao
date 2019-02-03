@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -72,7 +72,7 @@ public class Tela extends JFrame {
 		/*
 		 * Cria uma nova instancia do Grafo
 		 */
-		_grafo = new Grafo();
+		_grafo = new Grafo("");
 		MostraResultadoDoGrafo.OWNER = this;
 		
 		getContentPane().add(getPainelInfo(), BorderLayout.NORTH);
@@ -205,7 +205,7 @@ public class Tela extends JFrame {
 	 * Metodo para limpar a tela.
 	 */
 	public void limpaTela() {
-		_grafo = new Grafo();
+		_grafo = new Grafo("");
 		((PainelGrafo) _painelGrafo).setGrafo(_grafo);
 		_painelGrafo.repaint();
 		_radioVertice.setSelected(true);

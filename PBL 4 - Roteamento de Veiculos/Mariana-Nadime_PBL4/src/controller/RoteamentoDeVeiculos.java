@@ -31,10 +31,4 @@ public class RoteamentoDeVeiculos {
     public void addVeiculos(Veiculos v) {
         veiculos.add(v);
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
 }

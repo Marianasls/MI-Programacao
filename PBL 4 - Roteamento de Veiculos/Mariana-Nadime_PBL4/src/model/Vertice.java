@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,9 @@ import java.util.List;
  * Classe Vertice.
  * Controla todas as ações dos vertices.
  */
-public class Vertice implements Comparable<Vertice> {
+public class Vertice implements Comparable<Vertice>, Serializable {
 
-    public static Double LARGURA = 40D;
+    public static Double LARGURA = 10D;
 
     private String _id;
     private List<Aresta> _adjacente;
@@ -132,13 +133,9 @@ public class Vertice implements Comparable<Vertice> {
     public Point2D getCentroVertice() {
         return _centroVertice;
     }
-
+    
     public Double getDistancia() {
         return _distancia;
-    }
-
-    public void setDistancia(Double distancia) {
-        this._distancia = distancia;
     }
 
     public void setVisitar(boolean visitar) {

@@ -1,0 +1,8 @@
+Shadow Tower; Castle Black; 50; 10; 20; 20; 10;
+Castle Black; Eastwatch; 50; 20; 10; 30; 20;
+Castle Black; Winterfell; 50; 20; 10; 30; 30;
+Castle Black; Castle Cerwyn; 50; 20; 10; 30; 15;
+Castle Cerwyn; Moat Cailin; 50; 30; 15; 20; 15;
+Moat Cailin; White Harbor; 50; 20; 15; 30; 40;
+Moat Cailin; King's Landing; 50; 20; 15; 40; 40;
+Moat Cailin; The Twins; 50; 20; 15; 40; 30;
