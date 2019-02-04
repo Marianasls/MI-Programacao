@@ -40,7 +40,7 @@ public class GrafoTest {
      */
     @Test
     public void testAdicionarVertice() throws FileNotFoundException, IOException, ClassNotFoundException {
-        grafo.adicionarVertice("Shadow Tower", 90, 400);  //0
+        grafo.adicionarVertice("Feira De Santana", 90, 400);  //0
         grafo.adicionarVertice("Castle Black", 100, 400);
         grafo.adicionarVertice("Eastwatch", 110, 400);
         grafo.adicionarVertice("Winterfell", 90, 350);

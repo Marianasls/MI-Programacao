@@ -15,12 +15,13 @@
 package model;
 
 /**
- *
+ * Classe que armazena os dados de um Veiculo
  * @author Mariana Lima
  */
 public class Veiculos {
     private String nome;
     private String tipoCombustivel;
+    private double precoCombustivel;
     private double consumo;
 
     public Veiculos (String nome, String tipoC, double c){
@@ -51,6 +52,14 @@ public class Veiculos {
 
     public void setConsumo(double consumo) {
         this.consumo = consumo;
+    }
+
+    public double getPrecoCombustivel() {
+        return precoCombustivel;
+    }
+
+    public void setPrecoCombustivel(double precoCombustivel) {
+        this.precoCombustivel = precoCombustivel;
     }
     
     

@@ -15,18 +15,21 @@
  */
 package model;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import util.Grafo;
 
 /**
  *
  * @author Notebook
  */
 public class LeituraArquivoTest {
+    private Grafo grafo;
     
     public LeituraArquivoTest() {
     }
@@ -51,10 +54,26 @@ public class LeituraArquivoTest {
      * Test of lerArquivo method, of class LeituraArquivo.
      */
     @Test
-    public void testLerArquivo() throws Exception {
-        System.out.println("lerArquivo");
-        LeituraArquivo arq = new LeituraArquivo("teste.txt");
-        arq.lerArquivoTexto();
+    public void testLerArquivoTexto(){
+        grafo = new Grafo("Mapa");
+        try {
+            new LeituraArquivo("teste.txt", grafo).lerArquivoTexto();
+            System.out.println(grafo.getVertices().size());
+        } catch(IOException e){
+            System.out.println("Não foi possivel ler o arquivo :x");
+        }
     }
     
+    @Test
+    public void testLerArquivoBinario() {
+        grafo = new Grafo("Mapa");
+        try{
+            grafo = new LeituraArquivo("Mapa-Westeros.txt", grafo).lerArquivoBinario();
+            System.out.println(grafo.getVertices().size());
+        }catch(FileNotFoundException e){
+            System.out.println("Objeto serializado nao foi encontrado");
+        }catch(IOException e){
+            System.out.println("ta tudo errado");            
+        }
+    }
 }

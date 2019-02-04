@@ -35,18 +35,20 @@ public class LeituraArquivo {
 
     /**
      * Ler informações do arquivo binario e salva as cidades e caminhos na estrutura do grafo 
+     * @return grafo preenchido
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void lerArquivoBinario() throws FileNotFoundException, IOException {
+    public Grafo lerArquivoBinario() throws FileNotFoundException, IOException {
         ObjectInputStream b = new ObjectInputStream(new FileInputStream(new File(nome)));
         //Lendo o arquivo com o objeto serializado
         try {
             grafo = (Grafo)b.readObject();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LeituraArquivo.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Tamanho da lista de vertices apos leitura: "+grafo.getVertices().size());
+        } catch(ClassNotFoundException e) {
+            System.out.println("Não foi possivel ler o objeto serializado ");
         }
-        
+        return grafo;
     }
     
     /**
@@ -65,8 +67,22 @@ public class LeituraArquivo {
             int posXCidadeDestino = Integer.parseInt(array[5].trim());
             int posYCidadeDestino = Integer.parseInt(array[6].trim());
             double distancia = Double.valueOf(array[2]);
-            grafo.adicionarAresta(grafo.adicionarVertice(array[0], posXCidadeOrigem, posYCidadeOrigem),
-                    grafo.adicionarVertice(array[1], posXCidadeDestino, posYCidadeDestino), distancia);
+            Vertice origem = null;
+            Vertice destino = null;
+            
+            for(int i=0; i<grafo.getVertices().size(); i++){
+                //Se ja existir o vertice de origem no grafo
+                if(grafo.getVertices().get(i).getId().equals(array[0])) 
+                    origem = grafo.getVertices().get(i);
+                //Se ja existir o vertice de destino no grafo     
+                if(grafo.getVertices().get(i).getId().equals(array[1]))
+                    destino = grafo.getVertices().get(i);
+            }
+            // Adiciona vertices ao grafo se ele já não existir 
+            if(origem == null) origem = grafo.adicionarVertice(array[0], posXCidadeOrigem, posYCidadeOrigem);
+            if(destino == null) destino = grafo.adicionarVertice(array[1], posXCidadeDestino, posYCidadeDestino); 
+            //Adiciona a nova aresta ao grafo 
+            grafo.adicionarAresta(origem, destino, distancia);
         }
     }
     

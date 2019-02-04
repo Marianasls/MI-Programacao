@@ -89,22 +89,6 @@ public class Vertice implements Comparable<Vertice>, Serializable {
         /*
 		 * Desenha o nome do vertice na tela.
          */
-        desenharNome(graphics2D);
-    }
-
-    /*
-     * Metodo que desenha o nome do vertice no centro do vertice.
-     */
-    public void desenharNome(Graphics2D graphics2D) {
-        final FontMetrics metrics = graphics2D.getFontMetrics();
-
-        /*
-		 * Desenha o nome do vertice na tela.
-         */
-        graphics2D.drawString(_id,
-                (float) (_centroVertice.getX() - (metrics.stringWidth(_id) / 2) + 1),
-                (float) (_centroVertice.getY() + metrics.getHeight() - 10));
-
     }
 
     /*
@@ -138,6 +122,10 @@ public class Vertice implements Comparable<Vertice>, Serializable {
         return _distancia;
     }
 
+    public void setDistancia(double distancia) {
+        this._distancia = distancia;
+    }
+    
     public void setVisitar(boolean visitar) {
         this._visitado = visitar;
     }
@@ -183,9 +171,7 @@ public class Vertice implements Comparable<Vertice>, Serializable {
             if (other._id != null) {
                 return false;
             }
-        } else if (!_id.equals(other._id)) {
-            return false;
-        }
-        return true;
+        } 
+        return (_id.equals(other._id));
     }
 }
