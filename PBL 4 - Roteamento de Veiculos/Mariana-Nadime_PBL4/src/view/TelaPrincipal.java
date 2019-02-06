@@ -1,15 +1,21 @@
 package view;
+
+import controller.RVController;
+
 /**
  *
  * @author Mariana Lima 
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    private final RVController controlador;
+    
     /**
      * Creates new form TelaPrincipal
+     * @param controlador
      */
-    public TelaPrincipal() {
+    public TelaPrincipal(RVController controlador) {
         initComponents();
+        this.controlador = controlador;
     }
 
     /**
@@ -28,9 +34,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        cadastroVeiculos = new java.awt.Button();
         jButton1 = new javax.swing.JButton();
         telaInicial = new javax.swing.JDesktopPane();
+        cadastroVeiculos = new java.awt.Button();
+        definirRoteiro = new java.awt.Button();
 
         jMenu1.setText("jMenu1");
 
@@ -52,6 +59,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Roteamento de Veículos");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 312, 107));
 
+        jButton1.setText("Sair");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 60, 30));
+
         cadastroVeiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cadastroVeiculos.setLabel("Cadastrar Veículos");
         cadastroVeiculos.addActionListener(new java.awt.event.ActionListener() {
@@ -59,22 +69,45 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 cadastrarVeiculosActionPerformed(evt);
             }
         });
-        getContentPane().add(cadastroVeiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 140, 40));
-        cadastroVeiculos.getAccessibleContext().setAccessibleDescription("cadastrar dados dos veículos e preço do combustível");
 
-        jButton1.setText("Sair");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 60, 30));
+        definirRoteiro.setActionCommand("");
+        definirRoteiro.setLabel("Definir Roteiro");
+        definirRoteiro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                definirRoteiroMouseClicked(evt);
+            }
+        });
+        definirRoteiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                definirRoteiroActionPerformed(evt);
+            }
+        });
+
+        telaInicial.setLayer(cadastroVeiculos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        telaInicial.setLayer(definirRoteiro, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout telaInicialLayout = new javax.swing.GroupLayout(telaInicial);
         telaInicial.setLayout(telaInicialLayout);
         telaInicialLayout.setHorizontalGroup(
             telaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaInicialLayout.createSequentialGroup()
+                .addContainerGap(335, Short.MAX_VALUE)
+                .addGroup(telaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(definirRoteiro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadastroVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(265, 265, 265))
         );
         telaInicialLayout.setVerticalGroup(
             telaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(telaInicialLayout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(cadastroVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(definirRoteiro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(200, Short.MAX_VALUE))
         );
+
+        cadastroVeiculos.getAccessibleContext().setAccessibleDescription("cadastrar dados dos veículos e preço do combustível");
 
         getContentPane().add(telaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 520));
 
@@ -84,48 +117,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void cadastrarVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarVeiculosActionPerformed
         // TODO add your handling code here:
-        CadastroVeiculos obj = new CadastroVeiculos();
+        CadastroVeiculos obj = new CadastroVeiculos(controlador);
         telaInicial.add(obj);
         obj.setVisible(true);
     }//GEN-LAST:event_cadastrarVeiculosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void definirRoteiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirRoteiroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_definirRoteiroActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
-        });
-    }
+    private void definirRoteiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_definirRoteiroMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_definirRoteiroMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button cadastroVeiculos;
+    private java.awt.Button definirRoteiro;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;

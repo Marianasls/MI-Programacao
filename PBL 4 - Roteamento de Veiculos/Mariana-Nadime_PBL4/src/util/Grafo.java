@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package util;
 
 import java.awt.Graphics2D;
@@ -32,6 +27,10 @@ public class Grafo implements Serializable {
         this.nomeDoMapa = nome;
         _vertices = new ArrayList<Vertice>();
         _arestas = new ArrayList<Aresta>();
+    }
+
+    public String getNomeDoMapa() {
+        return nomeDoMapa;
     }
 
     /*

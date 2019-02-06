@@ -40,13 +40,17 @@ public class DijkstraTest {
         }
         List cidades = grafo.getVertices();
         System.out.println(cidades.size());
-        //for(int i =0; i<cidades.size(); i++) {
-        //TESTANDO O MENOR CAMINHO ENTRE O VERTICE INICIAL DA LISTA E O ULTIMO VERTICE 
         List menorCaminho = new Dijkstra().encontrarMenorCaminhoDijkstra(grafo, (Vertice)cidades.get(0), (Vertice)cidades.get(cidades.size()-1));
-        //}
+        System.out.println("nome: "+ grafo.getNomeDoMapa());
         for(int i = 0; i<menorCaminho.size(); i++){
             Vertice v = (Vertice)menorCaminho.get(i);
-            System.out.println("Menor caminho: "+ v.getId());
+            System.out.println("Menor caminho: "+ v.getId() +" - "+ v.getDistancia());
         }
+    }
+    
+    @Test
+    public void testEncontraCaminhoGeral() {
+     
+    
     }
 }

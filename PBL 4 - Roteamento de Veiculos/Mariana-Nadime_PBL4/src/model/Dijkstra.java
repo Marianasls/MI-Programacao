@@ -13,19 +13,21 @@ import util.Grafo;
 public class Dijkstra {
 
     // Lista que guarda os vertices pertencentes ao menor caminho encontrado
-    List<Vertice> menorCaminho = new ArrayList<Vertice>();
+    private List<Vertice> menorCaminho = new ArrayList<Vertice>();
 
     // Variavel que recebe os vertices pertencentes ao menor caminho
-    Vertice verticeCaminho = new Vertice();
+    private Vertice verticeCaminho = new Vertice();
 
     // Variavel que guarda o vertice que esta sendo visitado
-    Vertice atual = new Vertice();
+    private Vertice atual = new Vertice();
 
     // Variavel que marca o vizinho do vertice atualmente visitado
-    Vertice vizinho = new Vertice();
+    private Vertice vizinho = new Vertice();
 
     // Lista dos vertices que ainda nao foram visitados
-    List<Vertice> naoVisitados = new ArrayList<Vertice>();
+    private List<Vertice> naoVisitados = new ArrayList<Vertice>();
+    
+    private int peso;
     
     /**
      * Método que calcula o menor caminho entre dois vertices utilizando o algoritmo
@@ -41,8 +43,7 @@ public class Dijkstra {
 
         for (int i = 0; i < grafo.getVertices().size(); i++) {
 
-            // Vertice atual tem distancia zero, e todos os outros,
-            // 9999("infinita")
+            // Vertice atual tem distancia zero, e todos os outros, 9999("infinita")
             if (grafo.getVertices().get(i).getId().equals(v1.getId())) {
                 grafo.getVertices().get(i).setDistancia(0);
             } else {
@@ -76,10 +77,10 @@ public class Dijkstra {
                         vizinho.setDistancia(atual.getDistancia() + atual.getListaAdjacentes().get(i).getPeso());
                         vizinho.setPai(atual);
                         /*
-			 * Se o vizinho eh o vertice procurado, e foi feita uma
+			 * Se o vizinho é o vertice procurado, e foi feita uma
 			 * mudanca na distancia, a lista com o menor caminho
-			 * anterior eh apagada, pois existe um caminho menor
-			 * vertices pais, ateh o vertice origem.
+			 * anterior é apagada, pois existe um caminho menor
+			 * vertices pais, ate o vertice origem.
                          */
                         if (vizinho == v2) {
                             menorCaminho.clear();

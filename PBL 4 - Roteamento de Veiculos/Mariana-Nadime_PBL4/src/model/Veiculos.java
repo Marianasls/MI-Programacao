@@ -24,10 +24,11 @@ public class Veiculos {
     private double precoCombustivel;
     private double consumo;
 
-    public Veiculos (String nome, String tipoC, double c){
+    public Veiculos (String nome, String tipoC, double precoC, double c){
         this.nome = nome;
         this.consumo = c;
         this.tipoCombustivel = tipoC;
+        this.precoCombustivel = precoC;
     }
     
     public String getNome() {

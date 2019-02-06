@@ -19,6 +19,7 @@ import util.Grafo;
 /**
  *
  * @author Nadine
+ * @author Mariana
  */
 public class LeituraArquivo {
     private Grafo grafo;

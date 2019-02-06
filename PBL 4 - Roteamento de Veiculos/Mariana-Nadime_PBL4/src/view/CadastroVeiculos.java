@@ -1,14 +1,18 @@
 package view;
 
+import controller.RVController;
+import model.Veiculos;
+
 /**
  *
  * @author Notebook
  */
 public class CadastroVeiculos extends javax.swing.JInternalFrame {
-
+    private RVController controlador;
     /** Creates new form CadastroVeiculos */
-    public CadastroVeiculos() {
+    public CadastroVeiculos(RVController controlador) {
         initComponents();
+        this.controlador = controlador;
     }
 
     /** This method is called from within the constructor to
@@ -24,13 +28,15 @@ public class CadastroVeiculos extends javax.swing.JInternalFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jDialog1 = new javax.swing.JDialog();
         jDialog2 = new javax.swing.JDialog();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        nomeCarro = new javax.swing.JTextField();
+        tipoCombustivel = new javax.swing.JTextField();
+        precoCombustivel = new javax.swing.JTextField();
+        buttonCadastro = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        consumo = new javax.swing.JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -64,22 +70,23 @@ public class CadastroVeiculos extends javax.swing.JInternalFrame {
         setAlignmentX(250.0F);
         setAlignmentY(50.0F);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nomeCarro.setDropMode(javax.swing.DropMode.INSERT);
+        nomeCarro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nomeCarroActionPerformed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        precoCombustivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                precoCombustivelActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonCadastro.setText("Cadastrar");
+        buttonCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonCadastroActionPerformed(evt);
             }
         });
 
@@ -89,74 +96,88 @@ public class CadastroVeiculos extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Preço do Combustível");
 
+        jLabel4.setText("Consumo de combustivel (km/L)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jButton1)
-                .addContainerGap(127, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
+                    .addComponent(nomeCarro)
+                    .addComponent(jLabel4)
+                    .addComponent(tipoCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consumo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(precoCombustivel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonCadastro)
+                        .addGap(103, 103, 103))
                     .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                        .addComponent(jTextField2)))
-                .addGap(73, 73, 73))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nomeCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipoCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(79, 79, 79))
+                .addComponent(precoCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(consumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonCadastro)
+                .addGap(63, 63, 63))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nomeCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeCarroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nomeCarroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void buttonCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastroActionPerformed
+        Veiculos veiculo;
+        veiculo = new Veiculos(nomeCarro.getText(), tipoCombustivel.getText(), Double.valueOf(precoCombustivel.getText()), Double.valueOf(consumo.getText()));
+        controlador.addVeiculos(veiculo);
+        //apenas para teste
+        veiculo = (Veiculos)controlador.getVeiculos().iterator().next();
+        System.out.println("Veiculo salvo: " + veiculo.getNome()+"-"+ 
+                veiculo.getTipoCombustivel()+"-"+veiculo.getConsumo()+"-"+veiculo.getPrecoCombustivel());
+    }//GEN-LAST:event_buttonCadastroActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void precoCombustivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoCombustivelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_precoCombustivelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton buttonCadastro;
+    private javax.swing.JTextField consumo;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField nomeCarro;
+    private javax.swing.JTextField precoCombustivel;
+    private javax.swing.JTextField tipoCombustivel;
     // End of variables declaration//GEN-END:variables
 
 }

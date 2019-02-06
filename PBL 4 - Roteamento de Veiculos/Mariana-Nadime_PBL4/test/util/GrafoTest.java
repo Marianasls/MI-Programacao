@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * CLASSE TESTE DO GRAFO, Adiciona as 30 cidades ao grafo e suas respectivas arestas,
  * e escreve o objeto grafo marcado como serializable em um arquivo bínario para
  * ser lido posteriormente. 
- * @author Notebook
+ * @author Mariana Lima
  */
 public class GrafoTest {
 
