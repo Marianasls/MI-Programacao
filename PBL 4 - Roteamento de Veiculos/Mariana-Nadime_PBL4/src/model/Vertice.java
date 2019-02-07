@@ -34,10 +34,6 @@ public class Vertice implements Comparable<Vertice>, Serializable {
     private boolean _visitado = false;
     private Vertice _pai;
 
-    public Vertice() {
-        super();
-    }
-
     /*
      * Construtor da classe.
      * Cria o desenho de um circulo para representar um vertice.
@@ -47,10 +43,7 @@ public class Vertice implements Comparable<Vertice>, Serializable {
         this._id = id;
         this._adjacente = new ArrayList<Aresta>();
         this._coordenadaX = coordenadaX;
-        this._coordenadaY = coordenadaY;
-        this._desenhoVertice = new Ellipse2D.Double(_coordenadaX, _coordenadaY, LARGURA, LARGURA);
-        this._centroVertice = new Point2D.Double();
-        this._centroVertice.setLocation(_coordenadaX + (LARGURA / 2), _coordenadaY + (LARGURA / 2));
+        this._coordenadaY = ((coordenadaY *-1)+400);
     }
 
     /*

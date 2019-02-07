@@ -1,14 +1,33 @@
 package view;
 
 import controller.RVController;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.event.*;
+import java.util.List;
+import javax.swing.*;
+import model.Veiculos;
 
 /**
  *
- * @author Mariana Lima 
+ * @author Mariana Lima
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    private final RVController controlador;
-    
+
+    private RVController controlador;
+    private JPanel panel = new JPanel();
+    private JButton btnVeiculo = new JButton("Definir Veiculo");
+    private JButton btnRota = new JButton("Definir Rota");
+    private JButton btnCadastro = new JButton("Cadastrar Veiculos");
+    private CardLayout card = new CardLayout();
+    private JPanel panel_inicio = new JPanel();
+    private DefinirVeiculo panel_1;
+    private JPanel panel_2;
+    private JInternalFrame frame1;
+
     /**
      * Creates new form TelaPrincipal
      * @param controlador
@@ -16,6 +35,54 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal(RVController controlador) {
         initComponents();
         this.controlador = controlador;
+        panel_2 = new Mapa(controlador.getCidades());
+        frame1 = new CadastroVeiculos(controlador);
+        panel_1 = new DefinirVeiculo(controlador.getVeiculos(), controlador.getRota());
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
+        btnVeiculo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                painelVeiculos();
+            }
+        });
+
+        btnRota.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                painelRota();
+            }
+        });
+
+        btnCadastro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameCadastro();
+            }
+        });
+
+        getContentPane().setLayout(new BorderLayout());
+        panel.setLayout(new FlowLayout());
+        getContentPane().add(panel, BorderLayout.NORTH);
+        panel.add(btnVeiculo);
+        panel.add(btnRota);
+        panel.add(btnCadastro);
+
+        panel_1.add(new JLabel("Definir Veiculos"));
+        panel_2.add(new JLabel("Definir Rota"));
+
+        panel_inicio.setLayout(card);
+        panel_inicio.add(panel_1, "Definir Veiculos");
+        panel_inicio.add(panel_2, "Definir Rota");
+        panel_inicio.add(frame1, "Cadastrar Veiculos");
+        panel_1.setBackground(Color.blue);
+        panel_2.setBackground(Color.yellow);
+        getContentPane().add(panel_inicio);
     }
 
     /**
@@ -27,120 +94,58 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        telaInicial = new javax.swing.JDesktopPane();
-        cadastroVeiculos = new java.awt.Button();
-        definirRoteiro = new java.awt.Button();
-
-        jMenu1.setText("jMenu1");
-
-        jMenu2.setText("jMenu2");
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Roteamento de Veículos");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 312, 107));
-
-        jButton1.setText("Sair");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 60, 30));
-
-        cadastroVeiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cadastroVeiculos.setLabel("Cadastrar Veículos");
-        cadastroVeiculos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarVeiculosActionPerformed(evt);
-            }
-        });
-
-        definirRoteiro.setActionCommand("");
-        definirRoteiro.setLabel("Definir Roteiro");
-        definirRoteiro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                definirRoteiroMouseClicked(evt);
-            }
-        });
-        definirRoteiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                definirRoteiroActionPerformed(evt);
-            }
-        });
-
-        telaInicial.setLayer(cadastroVeiculos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        telaInicial.setLayer(definirRoteiro, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout telaInicialLayout = new javax.swing.GroupLayout(telaInicial);
-        telaInicial.setLayout(telaInicialLayout);
-        telaInicialLayout.setHorizontalGroup(
-            telaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaInicialLayout.createSequentialGroup()
-                .addContainerGap(335, Short.MAX_VALUE)
-                .addGroup(telaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(definirRoteiro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cadastroVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(265, 265, 265))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
-        telaInicialLayout.setVerticalGroup(
-            telaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(telaInicialLayout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(cadastroVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(definirRoteiro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 448, Short.MAX_VALUE)
         );
 
-        cadastroVeiculos.getAccessibleContext().setAccessibleDescription("cadastrar dados dos veículos e preço do combustível");
-
-        getContentPane().add(telaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 520));
-
-        setSize(new java.awt.Dimension(751, 552));
-        setLocationRelativeTo(null);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cadastrarVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarVeiculosActionPerformed
-        // TODO add your handling code here:
-        CadastroVeiculos obj = new CadastroVeiculos(controlador);
-        telaInicial.add(obj);
-        obj.setVisible(true);
-    }//GEN-LAST:event_cadastrarVeiculosActionPerformed
+    public void painelVeiculos() {
+        card.first(panel_inicio);
+        panel_1.setVisible(true);
+        panel_1.mostraVeiculos();
+        this.setSize(400, 400);
 
-    private void definirRoteiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirRoteiroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_definirRoteiroActionPerformed
+    }
 
-    private void definirRoteiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_definirRoteiroMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_definirRoteiroMouseClicked
+    public void painelRota() {
+        card.next(panel_inicio);
+        panel_2.setVisible(true);
+        this.setSize(720, 1065);
+            
+    }
+
+    public void frameCadastro() {        
+        card.last(panel_inicio);
+        frame1.setVisible(true);
+        this.setSize(400, 400);
+        
+    
+    }
+//    private void cadastrarVeiculosActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+//        // TODO add your handling code here:
+//        CadastroVeiculos obj = new CadastroVeiculos(controlador);
+//        jDesktopPane1.add(obj);
+//        obj.setVisible(true);
+//    }
+//
+//    private void definirRoteiroActionPerformed(java.awt.event.ActionEvent evt) {                                               
+//        // TODO add your handling code here:
+//        Mapa obj = new Mapa(controlador.getCidades());
+//        jDesktopPane1.add(obj);
+//        jDesktopPane1.setVisible(true);
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button cadastroVeiculos;
-    private java.awt.Button definirRoteiro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JDesktopPane telaInicial;
     // End of variables declaration//GEN-END:variables
 }

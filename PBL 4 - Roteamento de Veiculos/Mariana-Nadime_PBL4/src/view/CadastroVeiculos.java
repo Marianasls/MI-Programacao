@@ -1,6 +1,9 @@
 package view;
 
 import controller.RVController;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Veiculos;
 
 /**
@@ -151,12 +154,28 @@ public class CadastroVeiculos extends javax.swing.JInternalFrame {
 
     private void buttonCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastroActionPerformed
         Veiculos veiculo;
-        veiculo = new Veiculos(nomeCarro.getText(), tipoCombustivel.getText(), Double.valueOf(precoCombustivel.getText()), Double.valueOf(consumo.getText()));
-        controlador.addVeiculos(veiculo);
+        try{
+            double preco = Double.valueOf(precoCombustivel.getText());
+            double consumoC = Double.valueOf(consumo.getText());
+            veiculo = new Veiculos(nomeCarro.getText(), tipoCombustivel.getText(), preco, consumoC);
+            controlador.addVeiculos(veiculo);
         //apenas para teste
-        veiculo = (Veiculos)controlador.getVeiculos().iterator().next();
-        System.out.println("Veiculo salvo: " + veiculo.getNome()+"-"+ 
+            System.out.println("Veiculo salvo: " + veiculo.getNome()+"-"+ 
                 veiculo.getTipoCombustivel()+"-"+veiculo.getConsumo()+"-"+veiculo.getPrecoCombustivel());
+            
+            precoCombustivel.setText("");
+            consumo.setText("");
+            nomeCarro.setText("");
+            tipoCombustivel.setText("");
+            this.setClosed(true);
+            
+        }catch(NumberFormatException e){
+            precoCombustivel.setText("");
+            consumo.setText("");
+        }catch (PropertyVetoException ex) {
+            Logger.getLogger(CadastroVeiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_buttonCadastroActionPerformed
 
     private void precoCombustivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoCombustivelActionPerformed

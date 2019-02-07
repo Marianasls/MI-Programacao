@@ -2,7 +2,6 @@ package RoteamentoDeVeiculos;
 
 import controller.RVController;
 import view.TelaPrincipal;
-
 /**
  * Classe de execução da aplicação Roteamento de Veiculos
  * @author Mariana Lima
@@ -34,12 +33,13 @@ public class RoteamentoDeVeiculosApp {
             java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new TelaPrincipal(new RVController()).setVisible(true);
+                RVController controller= new RVController();
             }
         });
     } 

@@ -19,9 +19,15 @@ public class Rotas {
     
     public Rotas(Grafo grafo) {
         this.grafo = grafo;
+        
         lista_de_rota = new ArrayList();
     }
 
+    public void setVeiculo(Veiculos v) {
+        veiculo = v;
+    }
+
+    
     /**
      * Encontra a rota de menor caminho para a lista de cidades selecionadas pelo
      * usuario.
@@ -61,7 +67,7 @@ public class Rotas {
         lista_de_rota.add(dijkstra.encontrarMenorCaminhoDijkstra(
                 grafo, grafo.getVertices().get(0), cidadesSelecionadas.get(cidadesSelecionadas.size() - 1))
         );     
-        
+        consumoTotal = distancia;
     }
     
     public double getDistancia() {

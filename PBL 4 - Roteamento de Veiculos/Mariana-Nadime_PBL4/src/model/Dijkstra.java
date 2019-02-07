@@ -16,13 +16,13 @@ public class Dijkstra {
     private List<Vertice> menorCaminho = new ArrayList<Vertice>();
 
     // Variavel que recebe os vertices pertencentes ao menor caminho
-    private Vertice verticeCaminho = new Vertice();
+    private Vertice verticeCaminho ;
 
     // Variavel que guarda o vertice que esta sendo visitado
-    private Vertice atual = new Vertice();
+    private Vertice atual ;
 
     // Variavel que marca o vizinho do vertice atualmente visitado
-    private Vertice vizinho = new Vertice();
+    private Vertice vizinho;
 
     // Lista dos vertices que ainda nao foram visitados
     private List<Vertice> naoVisitados = new ArrayList<Vertice>();

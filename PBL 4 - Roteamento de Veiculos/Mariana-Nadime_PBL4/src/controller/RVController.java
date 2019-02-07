@@ -15,6 +15,8 @@
  */
 package controller;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,14 +38,23 @@ import view.TelaPrincipal;
 public class RVController {
 
     private final List<Veiculos> veiculos;
-    private final TelaPrincipal tela = new TelaPrincipal(this);
     private Grafo grafo;
-    //private final List<List<Vertice>> menorCaminho;
     private final Rotas rota;
     
     public RVController() {
+        this.lerArquivoBinario();
         veiculos = new ArrayList<>();
         rota = new Rotas(grafo);
+        TelaPrincipal tela = new TelaPrincipal(this);
+        tela.pack();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        tela.setSize(new Dimension(450, 450));
+        tela.setLocation((screenSize.width-450)/2, (screenSize.height-450)/2);
+        tela.setVisible(true);
+    }
+
+    public Rotas getRota() {
+        return rota;
     }
 
     /**
@@ -64,9 +75,9 @@ public class RVController {
     /**
      * Classe que ler o arquivo e salva as informações no grafo
      *
-     * @param file
+     * 
      */
-    public void lerArquivoBinario(String file) {
+    public void lerArquivoBinario() {
         try {
             grafo = new LeituraArquivo("Mapa-Westeros.txt", grafo).lerArquivoBinario();
         } catch (IOException ex) {
@@ -128,5 +139,8 @@ public class RVController {
             System.out.println("Não foi possivel abrir arquivo");
         }
     }
-
+    
+    public List<Vertice> getCidades() {
+        return grafo.getVertices();
+    }
 }

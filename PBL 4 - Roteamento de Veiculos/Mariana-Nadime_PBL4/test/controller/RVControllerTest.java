@@ -59,7 +59,7 @@ public class RVControllerTest {
     @Test
     public void testLerArquivo() {
         //para ler o arquivo de texto
-        controlador.lerArquivoBinario("Mapa-Westeros.txt");
+        controlador.lerArquivoBinario();
     }
 
     
